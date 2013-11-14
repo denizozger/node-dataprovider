@@ -51,6 +51,13 @@ app.get('/matchesfeed/:id/matchcentre', function(request, response) {
    return response.send(JSON.stringify(matchToReturn));
 });
 
+app.get('/', function(req, res){
+  var body = 'node-dataprovider';
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Length', body.length);
+  res.end(body);
+});
+
 var port = process.env.PORT || 3000;
 
 app.listen(port, function() {

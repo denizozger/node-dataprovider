@@ -28,19 +28,19 @@ app.get('/matchesfeed/:id/matchcentre', function(request, response) {
    case '7':
    		matchToReturn.version = 5000000000000;
    		matchToReturn.refereeName = 'Deniz';
-   		matchToReturn.ended = false;
+   		matchToReturn.terminated = false;
    		break;
    case '8':
    		var d = new Date();
 		  var n = d.getTime();
    		matchToReturn.version = n;
    		matchToReturn.refereeName = 'Engin';  
-   		matchToReturn.ended = false;
+   		matchToReturn.terminated = false;
    		break;
    case '9':
    		matchToReturn.version = 9000000000000;
    		matchToReturn.refereeName = 'Jon'; 
-   		matchToReturn.ended = true; 
+   		matchToReturn.terminated = true; 
    		break;
    default:
 		matchToReturn.id = null;

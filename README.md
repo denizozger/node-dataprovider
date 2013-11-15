@@ -4,5 +4,18 @@ This is a basic app that serves some static data for [node-fetcher](https://gith
 
 Please see [node-fetcher](https://github.com/denizozger/node-fetcher) and [node-websocket](https://github.com/denizozger/node-websocket) for more information.
 
+# Running Locally
+
+``` bash
+npm install
+foreman start
+```
+
+If you want to run [node-fetcher](https://github.com/denizozger/node-fetcher) and [node-websocket](https://github.com/denizozger/node-websocket) for more information. on your local, start this application with:
+
+``` bash
+PORT=3000 foreman start
+```
+
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/denizozger/node-dataprovider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

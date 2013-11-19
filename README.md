@@ -11,7 +11,7 @@ npm install
 foreman start
 ```
 
-If you want to run [node-fetcher](https://github.com/denizozger/node-fetcher) and [node-websocket](https://github.com/denizozger/node-websocket) for more information. on your local, start this application with:
+If you want to run [node-fetcher](https://github.com/denizozger/node-fetcher) and [node-websocket](https://github.com/denizozger/node-websocket)  on your local, start this application with:
 
 ``` bash
 PORT=3000 foreman start

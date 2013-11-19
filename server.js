@@ -2,53 +2,54 @@ var express = require('express');
 var app = express();
 app.use(express.logger());
 
-app.get('/matchesfeed/:id/matchcentre', function(request, response) {
-  var requestedMatchId = request.params.id;
+  app.get('/?*', function(request, response) {
+  var requestedResourceId = request.params[0];
 
-  if(!requestedMatchId || requestedMatchId < 0) {
+  if(!requestedResourceId || requestedResourceId < 0) {
     console.warn('Bad Request: Invalid parameters')
     response.statusCode = 400;
     return response.send('Bad Request');
   }
 
-  console.log('Received a data request for match %s', requestedMatchId);
+  console.log('Received a data request for resource %s', requestedResourceId);
 
   /**
-   * Send back the match data as follows:
-   * Match 7 has no changes
-   * Match 8 has new data
-   * Match 9 has ended
+   * Send back the resource data as follows:
+   * Resource 7 has no changes
+   * Resource 8 has new data
+   * Resource 9 has ended
    */
+   var resourceToReturn = {};
 
-   var matchToReturn = {};
-   matchToReturn.id = requestedMatchId;
-
-   switch(requestedMatchId)
+   switch(requestedResourceId)
    {
-   case '7':
-   		matchToReturn.version = 5000000000000;
-   		matchToReturn.refereeName = 'Deniz';
-   		matchToReturn.terminated = false;
+   case 'matchesfeed/7/matchcentre':
+      resourceToReturn.id = 7;
+   		resourceToReturn.version = 5000000000000;
+   		resourceToReturn.refereeName = 'Deniz';
+   		resourceToReturn.terminated = false;
    		break;
-   case '8':
+   case 'matchesfeed/8/matchcentre':
    		var d = new Date();
 		  var n = d.getTime();
-   		matchToReturn.version = n;
-   		matchToReturn.refereeName = 'Engin';  
-   		matchToReturn.terminated = false;
+      resourceToReturn.id = 8;
+   		resourceToReturn.version = n;
+   		resourceToReturn.refereeName = 'Engin';  
+   		resourceToReturn.terminated = false;
    		break;
-   case '9':
-   		matchToReturn.version = 9000000000000;
-   		matchToReturn.refereeName = 'Jon'; 
-   		matchToReturn.terminated = true; 
+   case 'matchesfeed/8/matchcentre':
+      resourceToReturn.id = 9;
+   		resourceToReturn.version = 9000000000000;
+   		resourceToReturn.refereeName = 'Jon'; 
+   		resourceToReturn.terminated = true; 
    		break;
    default:
-		matchToReturn.id = null;
-		response.statusCode = 501;
+  		resourceToReturn.id = null;
+  		response.statusCode = 501;
     	return response.send('Not implemented');  
    }
 
-   return response.send(JSON.stringify(matchToReturn));
+   return response.send(JSON.stringify(resourceToReturn));
 });
 
 app.get('/', function(req, res){

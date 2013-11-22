@@ -26,6 +26,7 @@ app.use(express.logger());
    case 'matchesfeed/7/matchcentre':
       resourceToReturn.id = 7;
    		resourceToReturn.version = 5000000000000;
+      resourceToReturn.maxAgeInMilis = 2000;
    		resourceToReturn.refereeName = 'Deniz';
    		resourceToReturn.terminated = false;
    		break;
@@ -34,15 +35,26 @@ app.use(express.logger());
 		  var n = d.getTime();
       resourceToReturn.id = 8;
    		resourceToReturn.version = n;
+      resourceToReturn.maxAgeInMilis = 2000;
    		resourceToReturn.refereeName = 'Engin';  
    		resourceToReturn.terminated = false;
    		break;
    case 'matchesfeed/8/matchcentre':
       resourceToReturn.id = 9;
    		resourceToReturn.version = 9000000000000;
+      resourceToReturn.maxAgeInMilis = 2000;
    		resourceToReturn.refereeName = 'Jon'; 
    		resourceToReturn.terminated = true; 
    		break;
+   case 'matchesfeed/10/matchcentre':
+      var d = new Date();
+      var n = d.getTime();
+      resourceToReturn.id = 10;
+      resourceToReturn.version = n;
+      resourceToReturn.maxAgeInMilis = 5000;
+      resourceToReturn.refereeName = 'Jack';  
+      resourceToReturn.terminated = false;
+      break;
    default:
   		resourceToReturn.id = null;
   		response.statusCode = 501;

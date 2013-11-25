@@ -39,7 +39,7 @@ app.use(express.logger());
    		resourceToReturn.refereeName = 'Engin';  
    		resourceToReturn.terminated = false;
    		break;
-   case 'matchesfeed/8/matchcentre':
+   case 'matchesfeed/9/matchcentre':
       resourceToReturn.id = 9;
    		resourceToReturn.version = 9000000000000;
       resourceToReturn.maxAgeInMilis = 2000;

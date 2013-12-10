@@ -1,8 +1,7 @@
 var express = require('express');
 var app = express();
 var bigMatchData = require('./match.json');
-
-console.log('Process Id: ' + process.pid);
+var log = require('npmlog');
 
 app.use(express.logger());
 
@@ -10,12 +9,12 @@ app.use(express.logger());
   var requestedResourceId = request.params[0];
 
   if(!requestedResourceId || requestedResourceId < 0) {
-    console.warn('Bad Request: Invalid parameters')
+    log.warn('Bad Request: Invalid parameters')
     response.statusCode = 400;
     return response.send('Bad Request');
   }
 
-  console.log('Received a data request for resource %s', requestedResourceId);
+  // log.http('Received a data request for resource', requestedResourceId);
 
   /**
    * Send back the resource data as follows:
@@ -43,7 +42,7 @@ app.use(express.logger());
       response.setHeader('Content-Length', body.length);
       response.setHeader('Content-Type', 'text/plain');
       response.setHeader('Last-Modified', new Date());
-      response.setHeader('Cache-Control', 'max-age=1');
+      response.setHeader('Cache-Control', 'max-age=2');
 
       return response.send(body);
     case 'matchesfeed/3/matchcentre':
@@ -52,7 +51,7 @@ app.use(express.logger());
       response.setHeader('Content-Length', body.length);
       response.setHeader('Content-Type', 'text/plain');
       response.setHeader('Last-Modified', new Date());
-      response.setHeader('Cache-Control', 'max-age=1');
+      response.setHeader('Cache-Control', 'max-age=3');
 
       return response.send(body);
     case 'matchesfeed/4/matchcentre':
@@ -61,7 +60,7 @@ app.use(express.logger());
       response.setHeader('Content-Length', body.length);
       response.setHeader('Content-Type', 'text/plain');
       response.setHeader('Last-Modified', new Date());
-      response.setHeader('Cache-Control', 'max-age=1');
+      response.setHeader('Cache-Control', 'max-age=4');
 
       return response.send(body);
     case 'matchesfeed/5/matchcentre':
@@ -70,7 +69,7 @@ app.use(express.logger());
       response.setHeader('Content-Length', body.length);
       response.setHeader('Content-Type', 'text/plain');
       response.setHeader('Last-Modified', new Date());
-      response.setHeader('Cache-Control', 'max-age=1');
+      response.setHeader('Cache-Control', 'max-age=5');
 
       return response.send(body);
     case 'matchesfeed/6/matchcentre':
@@ -79,7 +78,7 @@ app.use(express.logger());
       response.setHeader('Content-Length', body.length);
       response.setHeader('Content-Type', 'text/plain');
       response.setHeader('Last-Modified', new Date());
-      response.setHeader('Cache-Control', 'max-age=1');
+      response.setHeader('Cache-Control', 'max-age=4');
 
       return response.send(body);
    case 'matchesfeed/7/matchcentre':
@@ -103,7 +102,7 @@ app.use(express.logger());
         'Content-Length': body.length,
         'Content-Type': 'text/plain',
         'Last-Modified': new Date(),
-        'Cache-Control': 'max-age=2'
+        'Cache-Control': 'max-age=3'
       }); 
 
    		return response.send(body);
@@ -127,7 +126,7 @@ app.use(express.logger());
         'Content-Length': body.length,
         'Content-Type': 'text/plain',
         'Last-Modified': new Date(),
-        'Cache-Control': 'max-age=5'
+        'Cache-Control': 'max-age=2'
       }); 
 
       return response.send(body);
@@ -156,6 +155,9 @@ app.use(express.logger());
    default:
   		resourceToReturn.id = null;
   		response.statusCode = 501;
+
+      log.warn('Not implemented: ' + requestedResourceId);
+
     	return response.send('Not implemented');  
    }
 });
@@ -170,5 +172,5 @@ app.get('/', function(req, res){
 var port = process.env.PORT || 3000;
 
 app.listen(port, function() {
-  console.log('Server listening on %s', port);
+  log.info('Server ' + process.pid + ' listening on ', port);
 });

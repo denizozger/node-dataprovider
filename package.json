@@ -1,6 +1,11 @@
 {
   "name": "node-dataprovider",
   "description": "A dummy app that serves some static data in JSON format",
+  "author": "Deniz Ozger <denizozger@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/denizozger/node-dataprovider.git"
+  },
   "version": "0.0.1",
   "dependencies": {
     "express": "3.x"

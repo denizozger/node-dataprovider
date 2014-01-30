@@ -109,6 +109,18 @@ app.use(express.logger());
       response.setHeader('Cache-Control', 'max-age=1');
 
       return response.send(body);
+   case 'matchesfeed/11/matchcentre':
+      resourceToReturn.refereeName = 'Engin';  
+      resourceToReturn.weather = 'Sunny';
+      
+      var body = JSON.stringify(resourceToReturn);
+
+      response.setHeader('Content-Length', body.length);
+      response.setHeader('Content-Type', 'text/plain');
+      response.setHeader('Last-Modified', new Date());
+      response.setHeader('Cache-Control', 'max-age=1');
+
+      return response.send(body);   
    default:
   		resourceToReturn.id = null;
   		response.statusCode = 501;

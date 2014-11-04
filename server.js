@@ -3,6 +3,8 @@ var app = express();
 var bigMatchData = require('./match.json');
 var delta = require('./delta.json');
 var log = require('npmlog');
+var Chance = require('chance');
+var chance = new Chance();
 
 app.use(express.logger());
 
@@ -19,6 +21,33 @@ app.use(express.logger());
 
    switch(requestedResourceId)
    {
+    case 'test1':
+      var body = chance.paragraph({sentences: 1})
+
+      response.setHeader('Content-Length', body.length);
+      response.setHeader('Content-Type', 'text/plain');
+      response.setHeader('Last-Modified', new Date());
+      response.setHeader('Cache-Control', 'max-age=1');
+
+    return response.send(body);
+    case 'test2':
+      var body = chance.paragraph({sentences: 2})
+
+      response.setHeader('Content-Length', body.length);
+      response.setHeader('Content-Type', 'text/plain');
+      response.setHeader('Last-Modified', new Date());
+      response.setHeader('Cache-Control', 'max-age=2');
+
+    return response.send(body);
+    case 'test3':
+      var body = chance.paragraph({sentences: 3})
+
+      response.setHeader('Content-Length', body.length);
+      response.setHeader('Content-Type', 'text/plain');
+      response.setHeader('Last-Modified', new Date());
+      response.setHeader('Cache-Control', 'max-age=3');
+
+    return response.send(body);
     case 'matchesfeed/1/matchcentre':
       var body = delta;
 
@@ -27,7 +56,7 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
+    return response.send(body);
     case 'matchesfeed/2/matchcentre':
       var body = delta;
 
@@ -36,7 +65,7 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
+    return response.send(body);
     case 'matchesfeed/3/matchcentre':
       var body = delta;
 
@@ -45,7 +74,7 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
+    return response.send(body);
     case 'matchesfeed/4/matchcentre':
       var body = delta;
 
@@ -54,7 +83,7 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
+    return response.send(body);
     case 'matchesfeed/5/matchcentre':
       var body = delta;
 
@@ -63,7 +92,7 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
+    return response.send(body);
     case 'matchesfeed/6/matchcentre':
       var body = delta;
 
@@ -72,8 +101,8 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
-   case 'matchesfeed/7/matchcentre':
+    return response.send(body);
+    case 'matchesfeed/7/matchcentre':
    		var body = delta;
 
       response.setHeader('Content-Length', body.length);
@@ -81,8 +110,8 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
-   case 'matchesfeed/8/matchcentre':
+    return response.send(body);
+    case 'matchesfeed/8/matchcentre':
    		var body = delta;
 
       response.setHeader('Content-Length', body.length);
@@ -90,8 +119,8 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-   		return response.send(body);
-   case 'matchesfeed/9/matchcentre':
+ 		return response.send(body);
+    case 'matchesfeed/9/matchcentre':
    		var body = delta;
 
       response.setHeader('Content-Length', body.length);
@@ -99,8 +128,8 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
-   case 'matchesfeed/10/matchcentre':
+    return response.send(body);
+    case 'matchesfeed/10/matchcentre':
       var body = delta;
 
       response.setHeader('Content-Length', body.length);
@@ -108,8 +137,8 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);
-   case 'matchesfeed/11/matchcentre':
+    return response.send(body);
+    case 'matchesfeed/11/matchcentre':
       resourceToReturn.refereeName = 'Engin';  
       resourceToReturn.weather = 'Sunny';
       
@@ -120,14 +149,14 @@ app.use(express.logger());
       response.setHeader('Last-Modified', new Date());
       response.setHeader('Cache-Control', 'max-age=1');
 
-      return response.send(body);   
-   default:
+    return response.send(body);   
+    default:
   		resourceToReturn.id = null;
   		response.statusCode = 501;
 
       log.warn('Not implemented: ' + requestedResourceId);
 
-    	return response.send('Not implemented');  
+  	 return response.send('Not implemented');  
    }
 });
 

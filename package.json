@@ -8,6 +8,7 @@
   },
   "version": "0.0.1",
   "dependencies": {
+    "chance": "^0.6.1",
     "express": "3.x",
     "npmlog": "0.0.6"
   },
